@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ken Shiro - Minecraft Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ken Shiro's Minecraft Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       font-family: 'Press Start 2P', cursive;
-      background-color: #f4f4f4;
+      background-color: #f0f0f0;
       color: #333;
     }
 
     header {
       text-align: center;
-      background-color: #a0d8b3;
-      padding: 20px;
+      padding: 40px 20px;
+      background-color: #d6f5d6;
     }
 
     header h1 {
@@ -24,32 +24,77 @@
       font-size: 20px;
     }
 
-    section {
-      padding: 30px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    .category-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    .menu-section {
+      max-width: 900px;
+      margin: 40px auto;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
       gap: 20px;
-      justify-items: center;
-      margin-top: 20px;
+      padding: 0 20px;
     }
 
-    .category-card {
-      background-color: #fff;
+    .menu-card {
+      background-color: white;
       border: 2px solid #ccc;
       border-radius: 12px;
-      width: 150px;
-      height: 150px;
-      padding: 10px;
+      width: 200px;
+      height: 200px;
       text-align: center;
-      transition: transform 0.2s ease;
+      padding: 10px;
       cursor: pointer;
+      transition: transform 0.2s ease;
     }
 
-    .category-card:hover {
+    .menu-card:hover {
       transform: scale(1.05);
       background-color: #f0f8ff;
+    }
+
+    .menu-card img {
+      width: 100%;
+      height: 130px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .menu-card p {
+      font-size: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #d6f5d6;
+      font-size: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Ken Shiro's Minecraft Models</h1>
+    <p>Click a category to explore</p>
+  </header>
+
+  <section class="menu-section">
+    <div class="menu-card">
+      <img src="images/wandering_trader.png" alt="Baby Mobs">
+      <p>Baby Mobs</p>
+    </div>
+    <div class="menu-card">
+      <img src="images/furniture.png" alt="Furniture">
+      <p>Furniture</p>
+    </div>
+    <div class="menu-card">
+      <img src="images/weapons.png" alt="Weapons">
+      <p>Weapons</p>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Ken Shiro. All rights reserved.
+  </footer>
+
+</body>
+</html>
