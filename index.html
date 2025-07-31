@@ -4,39 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ken Shiro - Minecraft Modeler</title>
-  
-  <!-- Pixel font from Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-
   <style>
     body {
       margin: 0;
-      font-family: 'Press Start 2P', monospace;
-      background-color: #eaf3e1;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f3f3f3;
       color: #333;
     }
 
     header {
-      background-color: #8bb76b;
+      background-color: #fff;
       padding: 20px;
       text-align: center;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-    }
-
-    header h1, header p {
-      margin: 0;
-      color: #fff;
-    }
-
-    nav {
-      margin-top: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
     nav a {
-      color: #fff;
-      text-decoration: none;
       margin: 0 15px;
-      font-size: 12px;
+      text-decoration: none;
+      color: #007acc;
     }
 
     section {
@@ -45,30 +31,40 @@
       margin: auto;
     }
 
-    h2 {
-      font-size: 14px;
+    .category-buttons {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
+    }
+
+    .category-buttons button {
+      padding: 10px 20px;
+      margin: 0 10px;
+      border: none;
+      background-color: #8bc34a;
+      color: white;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .category-buttons button:hover {
+      background-color: #689f38;
     }
 
     .portfolio-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
     }
 
     .portfolio-item {
-      background-color: #ffffff;
-      border: 2px solid #8bb76b;
+      background-color: white;
+      border: 1px solid #ddd;
       border-radius: 8px;
       padding: 10px;
       text-align: center;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .portfolio-item:hover {
-      transform: scale(1.05);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      display: none; /* hide by default, will show via JS */
     }
 
     .portfolio-item img {
@@ -77,18 +73,11 @@
       border-radius: 4px;
     }
 
-    .portfolio-item p {
-      margin-top: 8px;
-      color: #555;
-      font-size: 10px;
-    }
-
     footer {
       text-align: center;
       padding: 20px;
-      background-color: #8bb76b;
-      color: #fff;
-      font-size: 10px;
+      background-color: #eee;
+      font-size: 14px;
     }
   </style>
 </head>
@@ -106,48 +95,66 @@
 
   <section id="home">
     <h2>Welcome!</h2>
-    <p style="text-align:center; font-size:10px;">
-      Hello! I'm Ken Shiro, a Minecraft modeler specializing in Blockbench creations.
-      Feel free to explore my work and get in touch if you're interested in commissions or collaborations.
-    </p>
+    <p>Hello! I'm Ken Shiro, a Minecraft modeler specializing in Blockbench creations. Feel free to explore my work and get in touch if you're interested in commissions or collaborations.</p>
   </section>
 
   <section id="portfolio">
     <h2>My Models</h2>
+    <div class="category-buttons">
+      <button onclick="filterModels('baby')">🐾 Baby Mobs</button>
+      <button onclick="filterModels('furniture')">🪑 Furniture</button>
+      <button onclick="filterModels('weapon')">⚔️ Weapons</button>
+    </div>
+
     <div class="portfolio-grid">
-      <div class="portfolio-item">
-        <img src="images/wandering_trader.png" alt="Wandering Trader">
+      <!-- Baby Mobs -->
+      <div class="portfolio-item" data-category="baby">
+        <img src="images/wandering_trader.png" alt="Wandering Trader" />
         <p>Wandering Trader</p>
       </div>
-      <div class="portfolio-item">
-        <img src="https://via.placeholder.com/300x200" alt="Model Placeholder">
-        <p>Model Placeholder</p>
+
+      <!-- Furniture -->
+      <div class="portfolio-item" data-category="furniture">
+        <img src="https://via.placeholder.com/300x200" alt="Furniture Placeholder" />
+        <p>Furniture Example</p>
       </div>
-      <div class="portfolio-item">
-        <img src="https://via.placeholder.com/300x200" alt="Model Placeholder">
-        <p>Model Placeholder</p>
+
+      <!-- Weapons -->
+      <div class="portfolio-item" data-category="weapon">
+        <img src="https://via.placeholder.com/300x200" alt="Weapon Placeholder" />
+        <p>Weapon Example</p>
       </div>
     </div>
   </section>
 
   <section id="about">
     <h2>About Me</h2>
-    <p style="text-align:center; font-size:10px;">
-      I'm a digital artist focused on Minecraft-style 3D modeling using Blockbench.
-      I create mobs, items, furniture, and more. I'm passionate about clean, creative design that fits Minecraft's aesthetic.
-    </p>
+    <p>I'm a digital artist focused on Minecraft-style 3D modeling using Blockbench. I create mobs, items, furniture, and more. I'm passionate about clean, creative design that fits Minecraft's aesthetic.</p>
   </section>
 
   <section id="contact">
     <h2>Contact</h2>
-    <p style="text-align:center; font-size:10px;">
-      You can reach me via email or my social channels. (Links will go here)
-    </p>
+    <p>You can reach me via email or my social channels. (Links will go here)</p>
   </section>
 
   <footer>
     <p>&copy; 2025 Ken Shiro. All rights reserved.</p>
   </footer>
+
+  <script>
+    function filterModels(category) {
+      const items = document.querySelectorAll('.portfolio-item');
+      items.forEach(item => {
+        if (item.dataset.category === category) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    // Show baby mobs by default on load
+    window.onload = () => filterModels('baby');
+  </script>
 </body>
 </html>
-
