@@ -1,112 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ken Shiro's Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ken Portfolio</title>
   <style>
     body {
+      font-family: sans-serif;
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
-      color: #333;
+      padding: 0;
+      background: #111;
+      color: #fff;
     }
-    header {
-      background-color: #ffffff;
-      padding: 20px;
-      text-align: center;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    header h1 {
-      margin: 0;
-    }
-    nav {
-      text-align: center;
-      margin-top: 10px;
-    }
-    nav a {
-      margin: 0 15px;
-      text-decoration: none;
-      color: #007acc;
-    }
-    section {
-      padding: 40px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
       gap: 20px;
     }
-    .portfolio-item {
-      background-color: white;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 10px;
-      text-align: center;
-      transition: transform 0.2s ease;
+
+    .card {
+      width: 200px;
+      height: 200px;
+      background: #222;
+      border-radius: 15px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
-    .portfolio-item:hover {
+
+    .card:hover {
       transform: scale(1.05);
     }
-    .portfolio-item img {
+
+    .card img {
       width: 100%;
-      height: auto;
-      border-radius: 4px;
+      height: 100%;
+      object-fit: cover;
     }
-    footer {
-      text-align: center;
-      padding: 20px;
-      background-color: #eee;
-      font-size: 14px;
+
+    .gallery {
+      display: none;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 40px;
+    }
+
+    .gallery img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    #back-btn {
+      margin: 20px;
+      display: none;
+      padding: 10px 20px;
+      background-color: #444;
+      border: none;
+      color: #fff;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #back-btn:hover {
+      background-color: #666;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Ken Shiro</h1>
-    <p>Minecraft Blockbench Modeler</p>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
-
-  <section id="portfolio">
-    <h2>My Models</h2>
-    <div class="portfolio-grid">
-      <div class="portfolio-item">
-        <img src="images/wandering_trader.png" alt="Wandering Trader">
-        <p>Wandering Trader</p>
-      </div>
-      <div class="portfolio-item">
-        <img src="images/model2.png" alt="Model Placeholder">
-        <p>Model Title</p>
-      </div>
-      <div class="portfolio-item">
-        <img src="images/model3.png" alt="Model Placeholder">
-        <p>Model Title</p>
-      </div>
+  <!-- Category Cards -->
+  <div class="container" id="main-cards">
+    <div class="card" onclick="showGallery('baby-mobs')">
+      <img src="images/wandering_trader.png" alt="Baby Mobs">
     </div>
-  </section>
+    <div class="card">
+      <img src="images/furniture_placeholder.png" alt="Furniture">
+    </div>
+    <div class="card">
+      <img src="images/weapon_placeholder.png" alt="Weapons">
+    </div>
+  </div>
 
-  <section id="about">
-    <h2>About Me</h2>
-    <p>I'm a digital artist focused on Minecraft-style 3D modeling using Blockbench. I create mobs, items, furniture, and more. I'm passionate about clean, creative design that fits Minecraft's aesthetic.</p>
-  </section>
+  <!-- Back Button -->
+  <button id="back-btn" onclick="goBack()">← Back</button>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>You can reach me via email or my social channels. (Links will go here)</p>
-  </section>
+  <!-- Baby Mobs Gallery -->
+  <div class="gallery" id="baby-mobs">
+    <img src="images/wandering_trader.png" alt="Wandering Trader">
+    <img src="images/zombie.png" alt="Zombie">
+    <img src="images/pig.png" alt="Pig">
+    <img src="images/strider.png" alt="Strider">
+    <img src="images/warden.png" alt="Warden">
+    <!-- Add more <img> tags here as needed -->
+  </div>
 
-  <footer>
-    &copy; 2025 Ken Shiro. All rights reserved.
-  </footer>
+  <script>
+    function showGallery(id) {
+      document.getElementById('main-cards').style.display = 'none';
+      document.getElementById('back-btn').style.display = 'block';
+      document.getElementById(id).style.display = 'flex';
+    }
 
+    function goBack() {
+      document.getElementById('main-cards').style.display = 'flex';
+      document.getElementById('back-btn').style.display = 'none';
+
+      document.querySelectorAll('.gallery').forEach(g => g.style.display = 'none');
+    }
+  </script>
 </body>
 </html>
