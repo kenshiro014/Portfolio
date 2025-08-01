@@ -3,188 +3,224 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ken Portfolio</title>
+  <title>Ken Shiro's Portfolio</title>
   <style>
     body {
-      font-family: sans-serif;
       margin: 0;
-      padding: 0;
-      background: #111;
-      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
     }
 
-    .container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+    header {
+      background-color: #fff;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    header p {
+      font-size: 1rem;
+      color: #777;
+    }
+
+    nav {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #3498db;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
     }
 
-    .card {
-      width: 200px;
-      height: 200px;
-      background: #222;
-      border-radius: 15px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.3s;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    .portfolio-item {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
     }
 
-    .card:hover {
+    .portfolio-item:hover {
       transform: scale(1.05);
     }
 
-    .card img {
+    .portfolio-item img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
+      border-radius: 6px;
     }
 
-    .gallery {
-      display: none;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      padding: 40px;
+    .portfolio-item p {
+      margin-top: 10px;
+      font-weight: 500;
+      color: #555;
     }
 
-    .gallery img {
-      width: 150px;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 10px;
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #2c3e50;
     }
 
-    #back-btn {
-      margin: 20px;
-      display: none;
-      padding: 10px 20px;
-      background-color: #444;
-      border: none;
-      color: #fff;
-      border-radius: 5px;
-      cursor: pointer;
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #eee;
+      font-size: 14px;
     }
 
-    #back-btn:hover {
-      background-color: #666;
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+    body {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 12px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Category Cards -->
-  <div class="container" id="main-cards">
-    <div class="card" onclick="showGallery('baby-mobs')">
-      <img src="images/wandering_trader.png" alt="Baby Mobs">
+  <header>
+    <h1>Ken Shiro</h1>
+    <p>Minecraft Blockbench Modeler</p>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="portfolio">
+    <h2>Baby Mobs</h2>
+    <div class="portfolio-grid">
+      <!-- Auto-generated image gallery -->
+      <!-- Replace this list with your actual image filenames in your "images/" folder -->
+      <!-- START Baby Mob List -->
+      <!-- The images must exist in your images folder -->
+      <!-- Example: <img src="images/allay.png" alt="Allay" /> -->
+      <!-- You can copy-paste or generate this list using code -->
+      
+      <!-- START LOOP -->
+      <!-- Just a sample loop output below -->
+      
+      <!-- Here's the full list of mobs to display -->
+      <!-- These are just hard-coded HTML entries for each image -->
+      
+      <!-- For brevity, only showing sample output per image -->
+      
+      <div class="portfolio-item"><img src="images/allay.png" alt="Allay" /><p>Allay</p></div>
+      <div class="portfolio-item"><img src="images/bat.png" alt="Bat" /><p>Bat</p></div>
+      <div class="portfolio-item"><img src="images/bee.png" alt="Bee" /><p>Bee</p></div>
+      <div class="portfolio-item"><img src="images/blaze.png" alt="Blaze" /><p>Blaze</p></div>
+      <div class="portfolio-item"><img src="images/cat.png" alt="Cat" /><p>Cat</p></div>
+      <div class="portfolio-item"><img src="images/chicken.png" alt="Chicken" /><p>Chicken</p></div>
+      <div class="portfolio-item"><img src="images/cod.png" alt="Cod" /><p>Cod</p></div>
+      <div class="portfolio-item"><img src="images/cow.png" alt="Cow" /><p>Cow</p></div>
+      <div class="portfolio-item"><img src="images/creeper.png" alt="Creeper" /><p>Creeper</p></div>
+      <div class="portfolio-item"><img src="images/dolphin.png" alt="Dolphin" /><p>Dolphin</p></div>
+      <div class="portfolio-item"><img src="images/donkey.png" alt="Donkey" /><p>Donkey</p></div>
+      <div class="portfolio-item"><img src="images/dragon.png" alt="Dragon" /><p>Dragon</p></div>
+      <div class="portfolio-item"><img src="images/drowned.png" alt="Drowned" /><p>Drowned</p></div>
+      <div class="portfolio-item"><img src="images/enderman.png" alt="Enderman" /><p>Enderman</p></div>
+      <div class="portfolio-item"><img src="images/endermite.png" alt="Endermite" /><p>Endermite</p></div>
+      <div class="portfolio-item"><img src="images/evoker.png" alt="Evoker" /><p>Evoker</p></div>
+      <div class="portfolio-item"><img src="images/fox.png" alt="Fox" /><p>Fox</p></div>
+      <div class="portfolio-item"><img src="images/frog.png" alt="Frog" /><p>Frog</p></div>
+      <div class="portfolio-item"><img src="images/ghast.png" alt="Ghast" /><p>Ghast</p></div>
+      <div class="portfolio-item"><img src="images/glow_squid.png" alt="Glow Squid" /><p>Glow Squid</p></div>
+      <div class="portfolio-item"><img src="images/goat.png" alt="Goat" /><p>Goat</p></div>
+      <div class="portfolio-item"><img src="images/guardian.png" alt="Guardian" /><p>Guardian</p></div>
+      <div class="portfolio-item"><img src="images/guardian_elder.png" alt="Elder Guardian" /><p>Elder Guardian</p></div>
+      <div class="portfolio-item"><img src="images/hoglin.png" alt="Hoglin" /><p>Hoglin</p></div>
+      <div class="portfolio-item"><img src="images/horse.png" alt="Horse" /><p>Horse</p></div>
+      <div class="portfolio-item"><img src="images/horse_skeleton.png" alt="Skeleton Horse" /><p>Skeleton Horse</p></div>
+      <div class="portfolio-item"><img src="images/husk.png" alt="Husk" /><p>Husk</p></div>
+      <div class="portfolio-item"><img src="images/iron_golem.png" alt="Iron Golem" /><p>Iron Golem</p></div>
+      <div class="portfolio-item"><img src="images/llama.png" alt="Llama" /><p>Llama</p></div>
+      <div class="portfolio-item"><img src="images/llama_trader.png" alt="Trader Llama" /><p>Trader Llama</p></div>
+      <div class="portfolio-item"><img src="images/magma_cube.png" alt="Magma Cube" /><p>Magma Cube</p></div>
+      <div class="portfolio-item"><img src="images/mule.png" alt="Mule" /><p>Mule</p></div>
+      <div class="portfolio-item"><img src="images/ocelot.png" alt="Ocelot" /><p>Ocelot</p></div>
+      <div class="portfolio-item"><img src="images/panda.png" alt="Panda" /><p>Panda</p></div>
+      <div class="portfolio-item"><img src="images/parrot.png" alt="Parrot" /><p>Parrot</p></div>
+      <div class="portfolio-item"><img src="images/phantom.png" alt="Phantom" /><p>Phantom</p></div>
+      <div class="portfolio-item"><img src="images/pig.png" alt="Pig" /><p>Pig</p></div>
+      <div class="portfolio-item"><img src="images/piglin.png" alt="Piglin" /><p>Piglin</p></div>
+      <div class="portfolio-item"><img src="images/piglin_zombie.png" alt="Zombie Piglin" /><p>Zombie Piglin</p></div>
+      <div class="portfolio-item"><img src="images/pillager.png" alt="Pillager" /><p>Pillager</p></div>
+      <div class="portfolio-item"><img src="images/polar_bear.png" alt="Polar Bear" /><p>Polar Bear</p></div>
+      <div class="portfolio-item"><img src="images/puffer_fish.png" alt="Puffer Fish" /><p>Puffer Fish</p></div>
+      <div class="portfolio-item"><img src="images/ravager.png" alt="Ravager" /><p>Ravager</p></div>
+      <div class="portfolio-item"><img src="images/salmon.png" alt="Salmon" /><p>Salmon</p></div>
+      <div class="portfolio-item"><img src="images/sheep.png" alt="Sheep" /><p>Sheep</p></div>
+      <div class="portfolio-item"><img src="images/shulker.png" alt="Shulker" /><p>Shulker</p></div>
+      <div class="portfolio-item"><img src="images/silver_fish.png" alt="Silver Fish" /><p>Silver Fish</p></div>
+      <div class="portfolio-item"><img src="images/skeleton.png" alt="Skeleton" /><p>Skeleton</p></div>
+      <div class="portfolio-item"><img src="images/slime.png" alt="Slime" /><p>Slime</p></div>
+      <div class="portfolio-item"><img src="images/sniffer.png" alt="Sniffer" /><p>Sniffer</p></div>
+      <div class="portfolio-item"><img src="images/snow_golem.png" alt="Snow Golem" /><p>Snow Golem</p></div>
+      <div class="portfolio-item"><img src="images/spider.png" alt="Spider" /><p>Spider</p></div>
+      <div class="portfolio-item"><img src="images/spider_cave.png" alt="Cave Spider" /><p>Cave Spider</p></div>
+      <div class="portfolio-item"><img src="images/spider_jockey.png" alt="Spider Jockey" /><p>Spider Jockey</p></div>
+      <div class="portfolio-item"><img src="images/squid.png" alt="Squid" /><p>Squid</p></div>
+      <div class="portfolio-item"><img src="images/stray.png" alt="Stray" /><p>Stray</p></div>
+      <div class="portfolio-item"><img src="images/strider.png" alt="Strider" /><p>Strider</p></div>
+      <div class="portfolio-item"><img src="images/tortoise.png" alt="Tortoise" /><p>Tortoise</p></div>
+      <div class="portfolio-item"><img src="images/tropical_fish.png" alt="Tropical Fish" /><p>Tropical Fish</p></div>
+      <div class="portfolio-item"><img src="images/turtle.png" alt="Turtle" /><p>Turtle</p></div>
+      <div class="portfolio-item"><img src="images/vex.png" alt="Vex" /><p>Vex</p></div>
+      <div class="portfolio-item"><img src="images/villager.png" alt="Villager" /><p>Villager</p></div>
+      <div class="portfolio-item"><img src="images/vindicator.png" alt="Vindicator" /><p>Vindicator</p></div>
+      <div class="portfolio-item"><img src="images/wandering_trader.png" alt="Wandering Trader" /><p>Wandering Trader</p></div>
+      <div class="portfolio-item"><img src="images/warden.png" alt="Warden" /><p>Warden</p></div>
+      <div class="portfolio-item"><img src="images/witch.png" alt="Witch" /><p>Witch</p></div>
+      <div class="portfolio-item"><img src="images/wither.png" alt="Wither" /><p>Wither</p></div>
+      <div class="portfolio-item"><img src="images/wither_skeleton.png" alt="Wither Skeleton" /><p>Wither Skeleton</p></div>
+      <div class="portfolio-item"><img src="images/wolf.png" alt="Wolf" /><p>Wolf</p></div>
+      <div class="portfolio-item"><img src="images/zoglin.png" alt="Zoglin" /><p>Zoglin</p></div>
+      <div class="portfolio-item"><img src="images/zombie.png" alt="Zombie" /><p>Zombie</p></div>
+      <div class="portfolio-item"><img src="images/zombie_villager.png" alt="Zombie Villager" /><p>Zombie Villager</p></div>
+
+      <!-- END LOOP -->
     </div>
-    <div class="card">
-      <img src="images/furniture_placeholder.png" alt="Furniture">
-    </div>
-    <div class="card">
-      <img src="images/weapon_placeholder.png" alt="Weapons">
-    </div>
-  </div>
+  </section>
 
-  <!-- Back Button -->
-  <button id="back-btn" onclick="goBack()">← Back</button>
+  <section id="about">
+    <h2>About Me</h2>
+    <p>I'm a digital artist focused on Minecraft-style 3D modeling using Blockbench. I create mobs, items, furniture, and more. I'm passionate about clean, creative design that fits Minecraft's aesthetic.</p>
+  </section>
 
-  <!-- Baby Mobs Gallery -->
-  <div class="gallery" id="baby-mobs">
-    <!-- Baby Mobs Gallery -->
-<div class="gallery" id="baby-mobs">
-  <img src="images/allay.png" alt="allay">
-  <img src="images/bat.png" alt="bat">
-  <img src="images/bee.png" alt="bee">
-  <img src="images/blaze.png" alt="blaze">
-  <img src="images/cat.png" alt="cat">
-  <img src="images/chicken.png" alt="chicken">
-  <img src="images/cod.png" alt="cod">
-  <img src="images/cow.png" alt="cow">
-  <img src="images/creeper.png" alt="creeper">
-  <img src="images/dolphin.png" alt="dolphin">
-  <img src="images/donkey.png" alt="donkey">
-  <img src="images/dragon.png" alt="dragon">
-  <img src="images/drowned.png" alt="drowned">
-  <img src="images/enderman.png" alt="enderman">
-  <img src="images/endermite.png" alt="endermite">
-  <img src="images/evoker.png" alt="evoker">
-  <img src="images/fox.png" alt="fox">
-  <img src="images/frog.png" alt="frog">
-  <img src="images/ghast.png" alt="ghast">
-  <img src="images/glow_squid.png" alt="glow squid">
-  <img src="images/goat.png" alt="goat">
-  <img src="images/guardian.png" alt="guardian">
-  <img src="images/guardian_elder.png" alt="elder guardian">
-  <img src="images/hoglin.png" alt="hoglin">
-  <img src="images/horse.png" alt="horse">
-  <img src="images/horse_skeleton.png" alt="skeleton horse">
-  <img src="images/husk.png" alt="husk">
-  <img src="images/iron_golem.png" alt="iron golem">
-  <img src="images/llama.png" alt="llama">
-  <img src="images/llama_trader.png" alt="trader llama">
-  <img src="images/magma_cube.png" alt="magma cube">
-  <img src="images/mule.png" alt="mule">
-  <img src="images/ocelot.png" alt="ocelot">
-  <img src="images/panda.png" alt="panda">
-  <img src="images/parrot.png" alt="parrot">
-  <img src="images/phantom.png" alt="phantom">
-  <img src="images/pig.png" alt="pig">
-  <img src="images/piglin.png" alt="piglin">
-  <img src="images/piglin_zombie.png" alt="zombified piglin">
-  <img src="images/pillager.png" alt="pillager">
-  <img src="images/polar_bear.png" alt="polar bear">
-  <img src="images/puffer_fish.png" alt="puffer fish">
-  <img src="images/ravager.png" alt="ravager">
-  <img src="images/salmon.png" alt="salmon">
-  <img src="images/sheep.png" alt="sheep">
-  <img src="images/shulker.png" alt="shulker">
-  <img src="images/silver_fish.png" alt="silverfish">
-  <img src="images/skeleton.png" alt="skeleton">
-  <img src="images/slime.png" alt="slime">
-  <img src="images/sniffer.png" alt="sniffer">
-  <img src="images/snow_golem.png" alt="snow golem">
-  <img src="images/spider.png" alt="spider">
-  <img src="images/spider_cave.png" alt="cave spider">
-  <img src="images/spider_jockey.png" alt="spider jockey">
-  <img src="images/squid.png" alt="squid">
-  <img src="images/stray.png" alt="stray">
-  <img src="images/strider.png" alt="strider">
-  <img src="images/tortoise.png" alt="tortoise">
-  <img src="images/tropical_fish.png" alt="tropical fish">
-  <img src="images/turtle.png" alt="turtle">
-  <img src="images/vex.png" alt="vex">
-  <img src="images/villager.png" alt="villager">
-  <img src="images/vindicator.png" alt="vindicator">
-  <img src="images/wandering_trader.png" alt="wandering trader">
-  <img src="images/warden.png" alt="warden">
-  <img src="images/witch.png" alt="witch">
-  <img src="images/wither.png" alt="wither">
-  <img src="images/wither_skeleton.png" alt="wither skeleton">
-  <img src="images/wolf.png" alt="wolf">
-  <img src="images/zoglin.png" alt="zoglin">
-  <img src="images/zombie.png" alt="zombie">
-  <img src="images/zombie_villager.png" alt="zombie villager">
-    <!-- Add more <img> tags here as needed -->
-  </div>
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>You can reach me via email or my social channels. (Links will go here)</p>
+  </section>
 
-  <script>
-    function showGallery(id) {
-      document.getElementById('main-cards').style.display = 'none';
-      document.getElementById('back-btn').style.display = 'block';
-      document.getElementById(id).style.display = 'flex';
-    }
+  <footer>
+    &copy; 2025 Ken Shiro. All rights reserved.
+  </footer>
 
-    function goBack() {
-      document.getElementById('main-cards').style.display = 'flex';
-      document.getElementById('back-btn').style.display = 'none';
-
-      document.querySelectorAll('.gallery').forEach(g => g.style.display = 'none');
-    }
-  </script>
 </body>
 </html>
