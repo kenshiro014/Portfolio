@@ -2,94 +2,106 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ken Shiro's Minecraft Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ken Shiro's Portfolio</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Press Start 2P', cursive;
-      background-color: #f0f0f0;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
       color: #333;
     }
-
     header {
+      background-color: #ffffff;
+      padding: 20px;
       text-align: center;
-      padding: 40px 20px;
-      background-color: #d6f5d6;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
-
     header h1 {
       margin: 0;
-      font-size: 20px;
     }
-
-    .menu-section {
-      max-width: 900px;
-      margin: 40px auto;
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      gap: 20px;
-      padding: 0 20px;
-    }
-
-    .menu-card {
-      background-color: white;
-      border: 2px solid #ccc;
-      border-radius: 12px;
-      width: 200px;
-      height: 200px;
+    nav {
       text-align: center;
+      margin-top: 10px;
+    }
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #007acc;
+    }
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .portfolio-item {
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
       padding: 10px;
-      cursor: pointer;
+      text-align: center;
       transition: transform 0.2s ease;
     }
-
-    .menu-card:hover {
+    .portfolio-item:hover {
       transform: scale(1.05);
-      background-color: #f0f8ff;
     }
-
-    .menu-card img {
+    .portfolio-item img {
       width: 100%;
-      height: 130px;
-      object-fit: contain;
-      margin-bottom: 10px;
+      height: auto;
+      border-radius: 4px;
     }
-
-    .menu-card p {
-      font-size: 10px;
-    }
-
     footer {
       text-align: center;
       padding: 20px;
-      background-color: #d6f5d6;
-      font-size: 10px;
+      background-color: #eee;
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Ken Shiro's Minecraft Models</h1>
-    <p>Click a category to explore</p>
+    <h1>Ken Shiro</h1>
+    <p>Minecraft Blockbench Modeler</p>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
 
-  <section class="menu-section">
-    <div class="menu-card">
-      <img src="images/wandering_trader.png" alt="Baby Mobs">
-      <p>Baby Mobs</p>
+  <section id="portfolio">
+    <h2>My Models</h2>
+    <div class="portfolio-grid">
+      <div class="portfolio-item">
+        <img src="images/wandering_trader.png" alt="Wandering Trader">
+        <p>Wandering Trader</p>
+      </div>
+      <div class="portfolio-item">
+        <img src="images/model2.png" alt="Model Placeholder">
+        <p>Model Title</p>
+      </div>
+      <div class="portfolio-item">
+        <img src="images/model3.png" alt="Model Placeholder">
+        <p>Model Title</p>
+      </div>
     </div>
-    <div class="menu-card">
-      <img src="images/furniture.png" alt="Furniture">
-      <p>Furniture</p>
-    </div>
-    <div class="menu-card">
-      <img src="images/weapons.png" alt="Weapons">
-      <p>Weapons</p>
-    </div>
+  </section>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>I'm a digital artist focused on Minecraft-style 3D modeling using Blockbench. I create mobs, items, furniture, and more. I'm passionate about clean, creative design that fits Minecraft's aesthetic.</p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>You can reach me via email or my social channels. (Links will go here)</p>
   </section>
 
   <footer>
