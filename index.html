@@ -1,163 +1,454 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ken Shiro's Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ken Shiro | Minecraft Blockbench Portfolio</title>
+
+  <!-- Minecraft-ish pixel font -->
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      margin: 0;
-      font-family: 'Press Start 2P', cursive;
-      background-color: #f2f7ff;
-      color: #333;
+    :root{
+      --bg:#101318;
+      --card:#171b22;
+      --muted:#8ea2b4;
+      --accent:#7bd88f;   /* grassy cute green */
+      --accent2:#8bcbff;  /* light sky */
+      --border:#252b36;
+      --text:#e9eef4;
+      --shadow:0 10px 20px rgba(0,0,0,.25);
+      --radius:16px;
     }
-    header {
-      background-color: #fff;
-      padding: 20px;
-      text-align: center;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:'Press Start 2P', cursive;scroll-behavior:smooth}
+    a{color:var(--accent2);text-decoration:none}
+    img{display:block;max-width:100%}
+    h1,h2,h3{margin:0 0 14px}
+    p{line-height:1.7}
+
+    /* Top fixed nav */
+    nav{
+      position:sticky;top:0;z-index:999;
+      background:rgba(16,19,24,.85);
+      backdrop-filter: blur(6px);
+      border-bottom:1px solid var(--border);
     }
-    header h1 {
-      margin: 0;
-      font-size: 20px;
+    .nav-inner{
+      max-width:1100px;margin:auto;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:10px 16px;
     }
-    header p {
-      margin: 5px 0 0;
-      font-size: 10px;
+    .brand{display:flex;gap:10px;align-items:center}
+    .brand .logo{
+      width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,var(--accent),#5cc17b);
+      box-shadow:var(--shadow);
     }
-    .categories {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      padding: 40px 20px 0;
+    .links{display:flex;gap:18px;font-size:.75rem}
+    .links a{opacity:.9}
+    .links a:hover{opacity:1;text-decoration:underline}
+
+    /* Hero */
+    .hero{
+      min-height:86vh;display:grid;place-items:center;text-align:center;position:relative;overflow:hidden;
+      border-bottom:1px solid var(--border);
+      background:
+        radial-gradient(60vw 60vw at 80% 20%, rgba(123,216,143,.08), transparent 60%),
+        radial-gradient(40vw 40vw at 10% 90%, rgba(139,203,255,.1), transparent 60%),
+        #0e1116;
     }
-    .category-card {
-      background-color: #fff;
-      border-radius: 16px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      padding: 30px;
-      width: 200px;
-      text-align: center;
-      cursor: pointer;
-      transition: transform 0.2s;
+    .hero::after{
+      content:"";position:absolute;inset:0;
+      background:url('images/bg.jpg') center/cover no-repeat; /* optional */
+      opacity:.12;pointer-events:none;
     }
-    .category-card:hover {
-      transform: scale(1.05);
+    .hero-inner{position:relative;z-index:1;max-width:900px;padding:50px 20px}
+    .hero h1{font-size:1.9rem;margin-bottom:10px}
+    .tagline{color:var(--muted);font-size:.85rem;margin-bottom:24px}
+    .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .btn{
+      display:inline-block;padding:12px 16px;border:1px solid var(--border);
+      border-radius:12px;background:var(--card);box-shadow:var(--shadow);
+      transition:transform .15s ease, box-shadow .15s ease;
+      font-size:.75rem;color:var(--text)
     }
-    .gallery {
-      display: none;
-      padding: 20px;
-      max-width: 1000px;
-      margin: auto;
+    .btn:hover{transform:translateY(-2px);box-shadow:0 14px 24px rgba(0,0,0,.28)}
+    .btn.accent{background:linear-gradient(135deg,var(--accent),#59c271);color:#09210f}
+
+    /* Section wrapper */
+    section{padding:64px 18px;border-bottom:1px solid var(--border)}
+    .wrap{max-width:1100px;margin:auto}
+
+    /* Card helpers */
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
     }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 20px;
+
+    /* About */
+    .about-grid{
+      display:grid;grid-template-columns: 1.1fr .9fr;gap:24px;align-items:center;
     }
-    .gallery-item {
-      background-color: #fff;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      text-align: center;
-      padding: 10px;
-      transition: transform 0.2s;
+    .about-pic{
+      width:100%;aspect-ratio:1/1;border-radius:14px;border:1px dashed var(--border);
+      background:linear-gradient(135deg,#1b212b,#11161e);
+      display:grid;place-items:center;color:var(--muted);font-size:.7rem
     }
-    .gallery-item:hover {
-      transform: scale(1.05);
+    .about-pic small{opacity:.8}
+    .about p{color:#cfd8e3;font-size:.8rem}
+
+    /* Skills */
+    .skill-grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:18px
     }
-    .gallery-item img {
-      width: 100%;
-      height: auto;
-      border-radius: 4px;
+    .skill{padding:16px}
+    .skill h3{font-size:.85rem;margin-bottom:8px}
+    .skill p{font-size:.75rem;color:#cfd8e3}
+
+    /* Category row */
+    .cat-row{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin:18px 0 4px;
     }
-    .gallery-item p {
-      font-size: 10px;
-      margin-top: 5px;
+    .cat{
+      padding:18px;text-align:center;cursor:pointer;user-select:none;transition:transform .15s;
+      border:1px solid var(--border);
     }
-    footer {
-      background-color: #eee;
-      text-align: center;
-      padding: 15px;
-      font-size: 10px;
+    .cat:hover{transform:translateY(-3px)}
+    .cat h3{font-size:.9rem;margin-top:10px}
+    .chip{display:inline-block;padding:6px 8px;border-radius:10px;background:#11161e;border:1px solid var(--border);font-size:.65rem;color:var(--muted)}
+
+    /* Gallery */
+    .gallery{display:none;margin-top:16px}
+    .gallery.active{display:block}
+    .grid{
+      display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px
     }
+    .tile{
+      position:relative;overflow:hidden;border-radius:12px;border:1px solid var(--border);
+      background:#0f1319
+    }
+    .thumb{
+      aspect-ratio:1/1;object-fit:cover;width:100%;
+      transition:transform .25s ease, filter .25s ease
+    }
+    .tile:hover .thumb{transform:scale(1.06)}
+    .label{
+      position:absolute;left:8px;bottom:8px;background:rgba(0,0,0,.45);
+      padding:6px 8px;border-radius:8px;font-size:.62rem;border:1px solid rgba(255,255,255,.08)
+    }
+
+    /* Testimonials (optional) */
+    .quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+    .quote{padding:16px;font-size:.75rem;color:#dfe7ef}
+
+    /* Contact */
+    .contact-grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px
+    }
+    .field{padding:16px}
+    .list{font-size:.8rem;color:#cfd8e3}
+    .list li{margin:8px 0}
+
+    /* Footer */
+    footer{padding:22px;text-align:center;color:var(--muted);font-size:.7rem}
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Ken Shiro</h1>
-    <p>Minecraft Blockbench Modeler</p>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div style="font-size:.85rem">Ken Shiro</div>
+      </div>
+      <div class="links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-inner">
+      <h1>Hi, I’m Ken Shiro</h1>
+      <p class="tagline">Minecraft & Blockbench Modeler — cute, clean, and game-ready models.</p>
+      <div class="cta-row">
+        <a class="btn accent" href="#portfolio">View Portfolio</a>
+        <!-- GUIDE: replace these with your real profiles -->
+        <a class="btn" href="https://sketchfab.com/" target="_blank" rel="noopener">Sketchfab</a>
+        <a class="btn" href="https://github.com/kenshiro014" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
   </header>
 
-  <section class="categories">
-    <div class="category-card" onclick="showGallery('baby')">Baby Mobs</div>
-    <div class="category-card" onclick="showGallery('furniture')">Furniture</div>
-    <div class="category-card" onclick="showGallery('weapons')">Weapons</div>
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap about">
+      <h2 style="margin-bottom:16px;">About Me</h2>
+      <div class="about-grid card">
+        <div style="padding:18px">
+          <p>
+            I’m a Minecraft-style 3D artist focused on **Blockbench**. I build baby mobs, furniture,
+            weapons, and props with clean topology and texture-friendly UVs. My goal: models that feel
+            **cute**, **optimized**, and **ready to drop** into your world.
+          </p>
+          <p>
+            Open for collaborations, commissions, or community projects. Ping me and let’s craft
+            something awesome!
+          </p>
+          <!-- GUIDE: add any awards/credits here -->
+        </div>
+        <div class="about-pic">
+          <!-- GUIDE: replace with your avatar or skin render -->
+          <small>Put your avatar here<br>images/avatar.png</small>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- Baby Mobs Gallery -->
-  <section id="baby" class="gallery">
-    <h2 style="text-align:center;">Baby Mobs</h2>
-    <div class="gallery-grid">
-      <div class="gallery-item"><img src="images/allay.png"><p>Allay</p></div>
-      <div class="gallery-item"><img src="images/bat.png"><p>Bat</p></div>
-      <div class="gallery-item"><img src="images/bee.png"><p>Bee</p></div>
-      <div class="gallery-item"><img src="images/blaze.png"><p>Blaze</p></div>
-      <div class="gallery-item"><img src="images/cat.png"><p>Cat</p></div>
-      <div class="gallery-item"><img src="images/chicken.png"><p>Chicken</p></div>
-      <div class="gallery-item"><img src="images/cow.png"><p>Cow</p></div>
-      <div class="gallery-item"><img src="images/creeper.png"><p>Creeper</p></div>
-      <div class="gallery-item"><img src="images/dolphin.png"><p>Dolphin</p></div>
-      <div class="gallery-item"><img src="images/donkey.png"><p>Donkey</p></div>
-      <div class="gallery-item"><img src="images/dragon.png"><p>Dragon</p></div>
-      <div class="gallery-item"><img src="images/enderman.png"><p>Enderman</p></div>
-      <div class="gallery-item"><img src="images/evoker.png"><p>Evoker</p></div>
-      <div class="gallery-item"><img src="images/fox.png"><p>Fox</p></div>
-      <div class="gallery-item"><img src="images/ghast.png"><p>Ghast</p></div>
-      <div class="gallery-item"><img src="images/glow_squid.png"><p>Glow Squid</p></div>
-      <div class="gallery-item"><img src="images/goat.png"><p>Goat</p></div>
-      <div class="gallery-item"><img src="images/guardian.png"><p>Guardian</p></div>
-      <div class="gallery-item"><img src="images/hoglin.png"><p>Hoglin</p></div>
-      <div class="gallery-item"><img src="images/horse.png"><p>Horse</p></div>
-      <div class="gallery-item"><img src="images/llama.png"><p>Llama</p></div>
-      <div class="gallery-item"><img src="images/magma_cube.png"><p>Magma Cube</p></div>
-      <div class="gallery-item"><img src="images/mule.png"><p>Mule</p></div>
-      <div class="gallery-item"><img src="images/ocelot.png"><p>Ocelot</p></div>
-      <div class="gallery-item"><img src="images/panda.png"><p>Panda</p></div>
-      <div class="gallery-item"><img src="images/parrot.png"><p>Parrot</p></div>
-      <div class="gallery-item"><img src="images/phantom.png"><p>Phantom</p></div>
-      <div class="gallery-item"><img src="images/pig.png"><p>Pig</p></div>
-      <div class="gallery-item"><img src="images/piglin.png"><p>Piglin</p></div>
-      <div class="gallery-item"><img src="images/polar_bear.png"><p>Polar Bear</p></div>
-      <div class="gallery-item"><img src="images/ravager.png"><p>Ravager</p></div>
-      <div class="gallery-item"><img src="images/sheep.png"><p>Sheep</p></div>
-      <div class="gallery-item"><img src="images/skeleton.png"><p>Skeleton</p></div>
-      <div class="gallery-item"><img src="images/slime.png"><p>Slime</p></div>
-      <div class="gallery-item"><img src="images/spider.png"><p>Spider</p></div>
-      <div class="gallery-item"><img src="images/squid.png"><p>Squid</p></div>
-      <div class="gallery-item"><img src="images/turtle.png"><p>Turtle</p></div>
-      <div class="gallery-item"><img src="images/villager.png"><p>Villager</p></div>
-      <div class="gallery-item"><img src="images/wandering_trader.png"><p>Wandering Trader</p></div>
-      <div class="gallery-item"><img src="images/warden.png"><p>Warden</p></div>
-      <div class="gallery-item"><img src="images/wither.png"><p>Wither</p></div>
-      <div class="gallery-item"><img src="images/wolf.png"><p>Wolf</p></div>
-      <div class="gallery-item"><img src="images/zombie.png"><p>Zombie</p></div>
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="wrap">
+      <h2 style="margin-bottom:12px;">Skills & Tools</h2>
+      <div class="skill-grid">
+        <div class="card skill">
+          <h3>Blockbench</h3>
+          <p>Rigging, animations, Java/Bedrock formats, UV maps.</p>
+        </div>
+        <div class="card skill">
+          <h3>Texturing</h3>
+          <p>Pixel-art friendly palettes (16x–64x), clean shading.</p>
+        </div>
+        <div class="card skill">
+          <h3>Optimization</h3>
+          <p>Low poly counts, atlas-ready textures, performance safe.</p>
+        </div>
+        <div class="card skill">
+          <h3>Integrations</h3>
+          <p>Resource packs, data packs, model exports.</p>
+        </div>
+      </div>
+      <!-- GUIDE: add/remove skill cards freely -->
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio">
+    <div class="wrap">
+      <h2 style="margin-bottom:10px;">Portfolio</h2>
+      <p style="color:var(--muted);font-size:.78rem;margin-bottom:14px">
+        Click a category to open its gallery. Images can link to Sketchfab, YouTube, or GitHub.
+      </p>
+
+      <!-- CATEGORY ROW -->
+      <div class="cat-row">
+        <div class="card cat" onclick="openGallery('baby')">
+          <span class="chip">Category</span>
+          <h3>Baby Mobs</h3>
+        </div>
+        <div class="card cat" onclick="openGallery('furniture')">
+          <span class="chip">Category</span>
+          <h3>Furniture</h3>
+        </div>
+        <div class="card cat" onclick="openGallery('weapons')">
+          <span class="chip">Category</span>
+          <h3>Weapons</h3>
+        </div>
+      </div>
+
+      <!-- GALLERIES -->
+      <!-- GUIDE: Only one .gallery is shown at a time via JS -->
+
+      <!-- BABY MOBS -->
+      <div id="gallery-baby" class="gallery card">
+        <div style="padding:16px 16px 0"><h3>Baby Mobs</h3></div>
+        <div class="grid" style="padding:16px">
+          <!-- GUIDE: Wrap each image in <a> if you want it clickable to Sketchfab, etc. -->
+          <a class="tile" href="https://sketchfab.com/" target="_blank" rel="noopener">
+            <img class="thumb" src="images/wandering_trader.png" alt="Wandering Trader">
+            <div class="label">Wandering Trader</div>
+          </a>
+
+          <!-- QUICK-ADD: paste more items below; filenames must exist in /images -->
+          <div class="tile"><img class="thumb" src="images/allay.png" alt="Allay"><div class="label">Allay</div></div>
+          <div class="tile"><img class="thumb" src="images/bat.png" alt="Bat"><div class="label">Bat</div></div>
+          <div class="tile"><img class="thumb" src="images/bee.png" alt="Bee"><div class="label">Bee</div></div>
+          <div class="tile"><img class="thumb" src="images/blaze.png" alt="Blaze"><div class="label">Blaze</div></div>
+          <div class="tile"><img class="thumb" src="images/cat.png" alt="Cat"><div class="label">Cat</div></div>
+          <div class="tile"><img class="thumb" src="images/chicken.png" alt="Chicken"><div class="label">Chicken</div></div>
+          <div class="tile"><img class="thumb" src="images/cod.png" alt="Cod"><div class="label">Cod</div></div>
+          <div class="tile"><img class="thumb" src="images/cow.png" alt="Cow"><div class="label">Cow</div></div>
+          <div class="tile"><img class="thumb" src="images/creeper.png" alt="Creeper"><div class="label">Creeper</div></div>
+          <div class="tile"><img class="thumb" src="images/dolphin.png" alt="Dolphin"><div class="label">Dolphin</div></div>
+          <div class="tile"><img class="thumb" src="images/donkey.png" alt="Donkey"><div class="label">Donkey</div></div>
+          <div class="tile"><img class="thumb" src="images/dragon.png" alt="Dragon"><div class="label">Dragon</div></div>
+          <div class="tile"><img class="thumb" src="images/drowned.png" alt="Drowned"><div class="label">Drowned</div></div>
+          <div class="tile"><img class="thumb" src="images/enderman.png" alt="Enderman"><div class="label">Enderman</div></div>
+          <div class="tile"><img class="thumb" src="images/endermite.png" alt="Endermite"><div class="label">Endermite</div></div>
+          <div class="tile"><img class="thumb" src="images/evoker.png" alt="Evoker"><div class="label">Evoker</div></div>
+          <div class="tile"><img class="thumb" src="images/fox.png" alt="Fox"><div class="label">Fox</div></div>
+          <div class="tile"><img class="thumb" src="images/frog.png" alt="Frog"><div class="label">Frog</div></div>
+          <div class="tile"><img class="thumb" src="images/ghast.png" alt="Ghast"><div class="label">Ghast</div></div>
+          <div class="tile"><img class="thumb" src="images/glow_squid.png" alt="Glow Squid"><div class="label">Glow Squid</div></div>
+          <div class="tile"><img class="thumb" src="images/goat.png" alt="Goat"><div class="label">Goat</div></div>
+          <div class="tile"><img class="thumb" src="images/guardian.png" alt="Guardian"><div class="label">Guardian</div></div>
+          <div class="tile"><img class="thumb" src="images/guardian_elder.png" alt="Elder Guardian"><div class="label">Elder Guardian</div></div>
+          <div class="tile"><img class="thumb" src="images/hoglin.png" alt="Hoglin"><div class="label">Hoglin</div></div>
+          <div class="tile"><img class="thumb" src="images/horse.png" alt="Horse"><div class="label">Horse</div></div>
+          <div class="tile"><img class="thumb" src="images/horse_skeleton.png" alt="Skeleton Horse"><div class="label">Skeleton Horse</div></div>
+          <div class="tile"><img class="thumb" src="images/husk.png" alt="Husk"><div class="label">Husk</div></div>
+          <div class="tile"><img class="thumb" src="images/iron_golem.png" alt="Iron Golem"><div class="label">Iron Golem</div></div>
+          <div class="tile"><img class="thumb" src="images/llama.png" alt="Llama"><div class="label">Llama</div></div>
+          <div class="tile"><img class="thumb" src="images/llama_trader.png" alt="Trader Llama"><div class="label">Trader Llama</div></div>
+          <div class="tile"><img class="thumb" src="images/magma_cube.png" alt="Magma Cube"><div class="label">Magma Cube</div></div>
+          <div class="tile"><img class="thumb" src="images/mule.png" alt="Mule"><div class="label">Mule</div></div>
+          <div class="tile"><img class="thumb" src="images/ocelot.png" alt="Ocelot"><div class="label">Ocelot</div></div>
+          <div class="tile"><img class="thumb" src="images/panda.png" alt="Panda"><div class="label">Panda</div></div>
+          <div class="tile"><img class="thumb" src="images/parrot.png" alt="Parrot"><div class="label">Parrot</div></div>
+          <div class="tile"><img class="thumb" src="images/phantom.png" alt="Phantom"><div class="label">Phantom</div></div>
+          <div class="tile"><img class="thumb" src="images/pig.png" alt="Pig"><div class="label">Pig</div></div>
+          <div class="tile"><img class="thumb" src="images/piglin.png" alt="Piglin"><div class="label">Piglin</div></div>
+          <div class="tile"><img class="thumb" src="images/piglin_zombie.png" alt="Zombified Piglin"><div class="label">Zombified Piglin</div></div>
+          <div class="tile"><img class="thumb" src="images/pillager.png" alt="Pillager"><div class="label">Pillager</div></div>
+          <div class="tile"><img class="thumb" src="images/polar_bear.png" alt="Polar Bear"><div class="label">Polar Bear</div></div>
+          <div class="tile"><img class="thumb" src="images/puffer_fish.png" alt="Puffer Fish"><div class="label">Puffer Fish</div></div>
+          <div class="tile"><img class="thumb" src="images/ravager.png" alt="Ravager"><div class="label">Ravager</div></div>
+          <div class="tile"><img class="thumb" src="images/salmon.png" alt="Salmon"><div class="label">Salmon</div></div>
+          <div class="tile"><img class="thumb" src="images/sheep.png" alt="Sheep"><div class="label">Sheep</div></div>
+          <div class="tile"><img class="thumb" src="images/shulker.png" alt="Shulker"><div class="label">Shulker</div></div>
+          <div class="tile"><img class="thumb" src="images/silver_fish.png" alt="Silverfish"><div class="label">Silverfish</div></div>
+          <div class="tile"><img class="thumb" src="images/skeleton.png" alt="Skeleton"><div class="label">Skeleton</div></div>
+          <div class="tile"><img class="thumb" src="images/slime.png" alt="Slime"><div class="label">Slime</div></div>
+          <div class="tile"><img class="thumb" src="images/sniffer.png" alt="Sniffer"><div class="label">Sniffer</div></div>
+          <div class="tile"><img class="thumb" src="images/snow_golem.png" alt="Snow Golem"><div class="label">Snow Golem</div></div>
+          <div class="tile"><img class="thumb" src="images/spider.png" alt="Spider"><div class="label">Spider</div></div>
+          <div class="tile"><img class="thumb" src="images/spider_cave.png" alt="Cave Spider"><div class="label">Cave Spider</div></div>
+          <div class="tile"><img class="thumb" src="images/spider_jockey.png" alt="Spider Jockey"><div class="label">Spider Jockey</div></div>
+          <div class="tile"><img class="thumb" src="images/squid.png" alt="Squid"><div class="label">Squid</div></div>
+          <div class="tile"><img class="thumb" src="images/stray.png" alt="Stray"><div class="label">Stray</div></div>
+          <div class="tile"><img class="thumb" src="images/strider.png" alt="Strider"><div class="label">Strider</div></div>
+          <div class="tile"><img class="thumb" src="images/tortoise.png" alt="Tortoise"><div class="label">Tortoise</div></div>
+          <div class="tile"><img class="thumb" src="images/tropical_fish.png" alt="Tropical Fish"><div class="label">Tropical Fish</div></div>
+          <div class="tile"><img class="thumb" src="images/turtle.png" alt="Turtle"><div class="label">Turtle</div></div>
+          <div class="tile"><img class="thumb" src="images/vex.png" alt="Vex"><div class="label">Vex</div></div>
+          <div class="tile"><img class="thumb" src="images/villager.png" alt="Villager"><div class="label">Villager</div></div>
+          <div class="tile"><img class="thumb" src="images/vindicator.png" alt="Vindicator"><div class="label">Vindicator</div></div>
+          <div class="tile"><img class="thumb" src="images/warden.png" alt="Warden"><div class="label">Warden</div></div>
+          <div class="tile"><img class="thumb" src="images/witch.png" alt="Witch"><div class="label">Witch</div></div>
+          <div class="tile"><img class="thumb" src="images/wither.png" alt="Wither"><div class="label">Wither</div></div>
+          <div class="tile"><img class="thumb" src="images/wither_skeleton.png" alt="Wither Skeleton"><div class="label">Wither Skeleton</div></div>
+          <div class="tile"><img class="thumb" src="images/wolf.png" alt="Wolf"><div class="label">Wolf</div></div>
+          <div class="tile"><img class="thumb" src="images/zoglin.png" alt="Zoglin"><div class="label">Zoglin</div></div>
+          <div class="tile"><img class="thumb" src="images/zombie.png" alt="Zombie"><div class="label">Zombie</div></div>
+          <div class="tile"><img class="thumb" src="images/zombie_villager.png" alt="Zombie Villager"><div class="label">Zombie Villager</div></div>
+        </div>
+      </div>
+
+      <!-- FURNITURE -->
+      <div id="gallery-furniture" class="gallery card">
+        <div style="padding:16px 16px 0"><h3>Furniture</h3></div>
+        <div class="grid" style="padding:16px">
+          <!-- GUIDE: replace placeholders with real files in /images and add your links -->
+          <a class="tile" href="https://sketchfab.com/" target="_blank" rel="noopener">
+            <img class="thumb" src="images/furniture_placeholder.png" alt="Furniture Set">
+            <div class="label">Furniture Set</div>
+          </a>
+          <div class="tile"><img class="thumb" src="images/furniture_chair.png" alt="Chair"><div class="label">Chair</div></div>
+          <div class="tile"><img class="thumb" src="images/furniture_table.png" alt="Table"><div class="label">Table</div></div>
+          <div class="tile"><img class="thumb" src="images/furniture_lamp.png" alt="Lamp"><div class="label">Lamp</div></div>
+        </div>
+      </div>
+
+      <!-- WEAPONS -->
+      <div id="gallery-weapons" class="gallery card">
+        <div style="padding:16px 16px 0"><h3>Weapons</h3></div>
+        <div class="grid" style="padding:16px">
+          <!-- GUIDE: replace placeholders with real files + links -->
+          <a class="tile" href="https://sketchfab.com/" target="_blank" rel="noopener">
+            <img class="thumb" src="images/weapon_placeholder.png" alt="Weapon Pack">
+            <div class="label">Weapon Pack</div>
+          </a>
+          <div class="tile"><img class="thumb" src="images/sword.png" alt="Sword"><div class="label">Sword</div></div>
+          <div class="tile"><img class="thumb" src="images/axe.png" alt="Axe"><div class="label">Axe</div></div>
+          <div class="tile"><img class="thumb" src="images/bow.png" alt="Bow"><div class="label">Bow</div></div>
+        </div>
+      </div>
+
+      <!-- GUIDE: Want GIF on hover?
+           1) Export a small GIF (e.g., images/wandering_trader.gif)
+           2) Duplicate the <img> with data-gif attribute and swap via JS on hover.
+           Ping me and I’ll drop the swap code when your GIFs are ready. -->
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS (optional) -->
+  <section id="testimonials">
+    <div class="wrap">
+      <h2 style="margin-bottom:12px;">What People Say</h2>
+      <div class="quotes">
+        <div class="card quote">“Adorable models and super clean textures. Plug-and-play!”</div>
+        <div class="card quote">“Fast, professional, and easy to work with.”</div>
+        <div class="card quote">“Exactly the vibe we wanted for our server.”</div>
+      </div>
+      <!-- GUIDE: replace with real quotes or remove this whole section -->
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap">
+      <h2 style="margin-bottom:12px;">Contact</h2>
+      <div class="contact-grid card">
+        <div class="field">
+          <p style="color:var(--muted);font-size:.78rem;margin-top:0">Let’s build something cute and epic!</p>
+          <ul class="list">
+            <!-- GUIDE: replace with your real links -->
+            <li>Email: <a href="mailto:youremail@gmail.com">youremail@gmail.com</a></li>
+            <li>Sketchfab: <a href="https://sketchfab.com/" target="_blank" rel="noopener">Your Sketchfab</a></li>
+            <li>GitHub: <a href="https://github.com/kenshiro014" target="_blank" rel="noopener">@kenshiro014</a></li>
+            <li>Discord: <span style="color:#fff">yourDiscord#0000</span></li>
+          </ul>
+        </div>
+        <div class="field">
+          <!-- GUIDE: embed form (Google Form, Tally, etc.) by replacing this block with their iframe -->
+          <p style="font-size:.75rem;color:#cfd8e3">
+            Want a custom model? Send me a message with your idea, style, and references. I’ll get back ASAP!
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 
   <footer>
-    &copy; 2025 Ken Shiro. All rights reserved.
+    © 2025 Ken Shiro — Minecraft / Blockbench Portfolio
   </footer>
 
   <script>
-    function showGallery(id) {
-      document.querySelectorAll('.gallery').forEach(g => g.style.display = 'none');
-      document.getElementById(id).style.display = 'block';
-      window.scrollTo({ top: document.getElementById(id).offsetTop - 40, behavior: 'smooth' });
+    // Toggle galleries by category
+    function openGallery(key){
+      const ids = ["gallery-baby","gallery-furniture","gallery-weapons"];
+      ids.forEach(id=>{
+        const node = document.getElementById(id);
+        if(!node) return;
+        node.classList.remove('active');
+      });
+      const target = document.getElementById("gallery-"+key);
+      if(target){
+        target.classList.add('active');
+        // smooth scroll into view
+        target.scrollIntoView({behavior:'smooth', block:'start'});
+      }
     }
+
+    // Optional: open Baby Mobs by default on first visit
+    // openGallery('baby');
   </script>
 </body>
 </html>
-
