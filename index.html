@@ -267,14 +267,38 @@
       <!-- GUIDE: Only one .gallery is shown at a time via JS -->
 
       <!-- BABY MOBS -->
-      <div id="gallery-baby" class="gallery card">
-        <div style="padding:16px 16px 0"><h3>Baby Mobs</h3></div>
-        <div class="grid" style="padding:16px">
-          <!-- GUIDE: Wrap each image in <a> if you want it clickable to Sketchfab, etc. -->
-          <a class="tile" href="https://sketchfab.com/" target="_blank" rel="noopener">
-            <img class="thumb" src="images/wandering_trader.png" alt="Wandering Trader">
-            <div class="label">Wandering Trader</div>
-          </a>
+<div id="gallery-baby" class="gallery card">
+  <div style="padding:16px 16px 0"><h3>Baby Mobs</h3></div>
+  <div class="grid" style="padding:16px">
+
+    <div class="tile" onclick="openLightbox(this)">
+      <img class="thumb" src="images/wandering_trader.png" alt="Wandering Trader">
+      <div class="label">Wandering Trader</div>
+    </div>
+
+    <div class="tile" onclick="openLightbox(this)">
+      <img class="thumb" src="images/baby_zombie.png" alt="Baby Zombie">
+      <div class="label">Baby Zombie</div>
+    </div>
+
+    <div class="tile" onclick="openLightbox(this)">
+      <img class="thumb" src="images/baby_creeper.png" alt="Baby Creeper">
+      <div class="label">Baby Creeper</div>
+    </div>
+
+    <div class="tile" onclick="openLightbox(this)">
+      <img class="thumb" src="images/baby_skeleton.png" alt="Baby Skeleton">
+      <div class="label">Baby Skeleton</div>
+    </div>
+
+    <div class="tile" onclick="openLightbox(this)">
+      <img class="thumb" src="images/baby_spider.png" alt="Baby Spider">
+      <div class="label">Baby Spider</div>
+    </div>
+
+  </div>
+</div>
+
 
           <!-- QUICK-ADD: paste more items below; filenames must exist in /images -->
           <div class="tile"><img class="thumb" src="images/allay.png" alt="Allay"><div class="label">Allay</div></div>
@@ -452,3 +476,4 @@
   </script>
 </body>
 </html>
+
