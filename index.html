@@ -4,242 +4,263 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ken Shiro | Portfolio</title>
-
-  <!-- GUIDE: CSS Styling dito -->
   <style>
+    /* ---------- GENERAL ---------- */
     body {
+      font-family: 'Trebuchet MS', sans-serif;
+      background: #0d0d0d;
+      color: #f0f0f0;
       margin: 0;
-      font-family: 'Minecraftia', sans-serif;
-      background: #1e1e1e;
-      color: #fff;
       line-height: 1.6;
     }
-
-    header {
-      text-align: center;
-      padding: 50px 20px;
-      background: linear-gradient(145deg, #2d2d2d, #1a1a1a);
+    h1, h2, h3 {
+      font-family: 'Minecraftia', sans-serif;
     }
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-      color: #00ffcc;
-    }
-    header p {
-      color: #aaa;
-      font-size: 1rem;
-    }
-
-    section {
-      padding: 50px 20px;
+    .wrap {
+      width: 90%;
       max-width: 1000px;
       margin: auto;
+      padding: 40px 0;
+    }
+    .card {
+      background: #1a1a1a;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+    .chip {
+      font-size: .7rem;
+      background: #333;
+      color: #bbb;
+      padding: 4px 8px;
+      border-radius: 6px;
+      margin-bottom: 6px;
+      display: inline-block;
     }
 
-    h2 {
-      font-size: 1.8rem;
-      margin-bottom: 15px;
-      color: #00ffcc;
+    /* ---------- HEADER ---------- */
+    header {
+      background: #121212;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
     }
 
-    /* Categories */
+    /* ---------- CATEGORY ROW ---------- */
     .cat-row {
       display: flex;
-      gap: 20px;
+      gap: 16px;
       flex-wrap: wrap;
     }
     .cat {
       flex: 1;
-      min-width: 200px;
-      background: #2b2b2b;
-      padding: 20px;
-      border-radius: 12px;
-      text-align: center;
       cursor: pointer;
-      transition: transform 0.2s;
+      transition: transform .2s;
+      text-align: center;
     }
     .cat:hover {
       transform: scale(1.05);
-      background: #333;
+      background: #222;
     }
 
-    /* Gallery */
+    /* ---------- GALLERIES ---------- */
     .gallery {
       display: none;
-      margin-top: 30px;
-      background: #2b2b2b;
-      border-radius: 12px;
-      padding: 20px;
     }
-
+    .gallery.active {
+      display: block;
+    }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
       gap: 16px;
     }
     .tile {
-      background: #1a1a1a;
-      border-radius: 10px;
+      position: relative;
       overflow: hidden;
-      text-align: center;
-      transition: transform 0.2s;
+      border-radius: 12px;
       cursor: pointer;
+      transition: transform .2s;
     }
     .tile:hover {
       transform: scale(1.05);
     }
     .thumb {
       width: 100%;
-      height: auto;
       display: block;
-    }
-    .label {
-      padding: 10px;
-      font-size: 0.9rem;
-    }
-
-    /* Fullscreen Viewer */
-    .fullscreen {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9);
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-    .fullscreen img {
-      max-width: 90%;
-      max-height: 80%;
       border-radius: 12px;
     }
-    .fullscreen span {
+    .label {
       position: absolute;
-      top: 20px;
-      right: 40px;
-      font-size: 2rem;
+      bottom: 0;
+      background: rgba(0,0,0,0.6);
+      width: 100%;
+      text-align: center;
+      font-size: .9rem;
+      padding: 4px 0;
+    }
+
+    /* ---------- MODAL (FULL IMAGE) ---------- */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      padding-top: 80px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background: rgba(0,0,0,0.9);
+    }
+    .modal-content {
+      margin: auto;
+      display: block;
+      max-width: 90%;
+      border-radius: 12px;
+    }
+    .modal-caption {
+      margin: 10px auto;
+      text-align: center;
+      color: #ddd;
+    }
+    .close {
+      position: absolute;
+      top: 30px;
+      right: 50px;
+      font-size: 40px;
+      font-weight: bold;
       color: #fff;
       cursor: pointer;
     }
 
+    /* ---------- FOOTER ---------- */
     footer {
       text-align: center;
-      padding: 30px;
+      padding: 20px;
       background: #111;
       color: #777;
     }
   </style>
 </head>
 <body>
-
   <!-- HEADER -->
   <header>
-    <h1>Ken Shiro</h1>
-    <p>Blockbench Modeler | Minecraft Creations</p>
+    <h1>Ken Shiro | Minecraft Portfolio</h1>
+    <p>Blockbench Modeler | Custom Mobs, Furniture, Weapons</p>
   </header>
 
   <!-- ABOUT -->
-  <section id="about">
-    <h2>About Me</h2>
-    <p>Hello! I'm Ken, a 3D modeler specializing in Minecraft creations. 
-       I design custom baby mobs, furniture, and weapons using Blockbench. 
-       My goal is to bring creativity and cuteness into Minecraft while keeping 
-       everything professional and polished.</p>
+  <section id="about" class="wrap">
+    <div class="card">
+      <span class="chip">About</span>
+      <h2>About Me</h2>
+      <p>Hi! I'm Ken Shiro, a Minecraft modeler specializing in cute, creative, and functional designs. I create custom mobs, detailed furniture, and unique weapons for Minecraft projects.</p>
+    </div>
   </section>
 
   <!-- PORTFOLIO -->
-  <section id="portfolio">
+  <section id="portfolio" class="wrap">
     <h2>Portfolio</h2>
-    <p style="color:#aaa;font-size:.9rem">
-      Click a category to open its gallery. Images can link to Sketchfab, YouTube, or GitHub.  
-      (Click an image to view fullscreen.)
+    <p style="color:#bbb;font-size:.9rem;margin-bottom:20px">
+      Click a category to open its gallery. Images can link to Sketchfab, YouTube, or GitHub.
     </p>
 
     <!-- CATEGORY ROW -->
     <div class="cat-row">
-      <div class="cat" onclick="openGallery('baby')">
+      <div class="card cat" onclick="openGallery('baby')">
+        <span class="chip">Category</span>
         <h3>Baby Mobs</h3>
       </div>
-      <div class="cat" onclick="openGallery('furniture')">
+      <div class="card cat" onclick="openGallery('furniture')">
+        <span class="chip">Category</span>
         <h3>Furniture</h3>
       </div>
-      <div class="cat" onclick="openGallery('weapons')">
+      <div class="card cat" onclick="openGallery('weapons')">
+        <span class="chip">Category</span>
         <h3>Weapons</h3>
       </div>
     </div>
 
     <!-- GALLERIES -->
-
     <!-- BABY MOBS -->
-    <div id="gallery-baby" class="gallery">
+    <div id="gallery-baby" class="gallery card">
       <h3>Baby Mobs</h3>
       <div class="grid">
-        <!-- GUIDE: Add more <a class="tile"> blocks for more images -->
-        <div class="tile" onclick="openFullscreen('images/wandering_trader.png')">
+        <!-- Example with clickable full image -->
+        <div class="tile" onclick="openModal('images/wandering_trader.png','Wandering Trader')">
           <img class="thumb" src="images/wandering_trader.png" alt="Wandering Trader">
           <div class="label">Wandering Trader</div>
         </div>
-        <div class="tile" onclick="openFullscreen('images/baby_zombie.png')">
+        <div class="tile" onclick="openModal('images/baby_zombie.png','Baby Zombie')">
           <img class="thumb" src="images/baby_zombie.png" alt="Baby Zombie">
           <div class="label">Baby Zombie</div>
-        </div>
-        <div class="tile" onclick="openFullscreen('images/baby_creeper.png')">
-          <img class="thumb" src="images/baby_creeper.png" alt="Baby Creeper">
-          <div class="label">Baby Creeper</div>
         </div>
       </div>
     </div>
 
-    <!-- FURNITURE -->
-    <div id="gallery-furniture" class="gallery">
+    <!-- GUIDE: Duplicate same pattern for Furniture & Weapons -->
+    <div id="gallery-furniture" class="gallery card">
       <h3>Furniture</h3>
       <div class="grid">
-        <div class="tile" onclick="openFullscreen('images/sofa.png')">
+        <div class="tile" onclick="openModal('images/sofa.png','Sofa')">
           <img class="thumb" src="images/sofa.png" alt="Sofa">
           <div class="label">Sofa</div>
         </div>
       </div>
     </div>
 
-    <!-- WEAPONS -->
-    <div id="gallery-weapons" class="gallery">
+    <div id="gallery-weapons" class="gallery card">
       <h3>Weapons</h3>
       <div class="grid">
-        <div class="tile" onclick="openFullscreen('images/hammer.png')">
+        <div class="tile" onclick="openModal('images/hammer.png','Hammer')">
           <img class="thumb" src="images/hammer.png" alt="Hammer">
           <div class="label">Hammer</div>
         </div>
       </div>
     </div>
-
   </section>
 
-  <!-- FULLSCREEN IMAGE VIEWER -->
-  <div id="fullscreen" class="fullscreen" onclick="closeFullscreen()">
-    <span>&times;</span>
-    <img id="fullscreen-img" src="" alt="Fullscreen View">
-  </div>
+  <!-- CONTACT -->
+  <section id="contact" class="wrap">
+    <div class="card">
+      <span class="chip">Contact</span>
+      <h2>Get in Touch</h2>
+      <p>You can reach me through my socials or check out my models on Sketchfab.</p>
+    </div>
+  </section>
 
   <!-- FOOTER -->
   <footer>
-    <p>&copy; 2025 Ken Shiro. All Rights Reserved.</p>
+    © 2025 Ken Shiro | Minecraft Portfolio
   </footer>
 
-  <!-- GUIDE: JavaScript dito -->
+  <!-- MODAL (for full image) -->
+  <div id="imgModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modalImg">
+    <div id="caption" class="modal-caption"></div>
+  </div>
+
+  <!-- JAVASCRIPT -->
   <script>
     function openGallery(cat) {
-      document.querySelectorAll('.gallery').forEach(g => g.style.display = 'none');
-      document.getElementById('gallery-' + cat).style.display = 'block';
+      document.querySelectorAll('.gallery').forEach(g => g.classList.remove('active'));
+      document.getElementById('gallery-' + cat).classList.add('active');
     }
 
-    function openFullscreen(src) {
-      document.getElementById("fullscreen-img").src = src;
-      document.getElementById("fullscreen").style.display = "flex";
+    function openModal(src, caption) {
+      document.getElementById("imgModal").style.display = "block";
+      document.getElementById("modalImg").src = src;
+      document.getElementById("caption").innerText = caption;
     }
 
-    function closeFullscreen() {
-      document.getElementById("fullscreen").style.display = "none";
+    function closeModal() {
+      document.getElementById("imgModal").style.display = "none";
     }
   </script>
 </body>
