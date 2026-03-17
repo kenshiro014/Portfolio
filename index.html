@@ -220,12 +220,11 @@
   <header class="hero">
     <div class="hero-inner">
       <h1>Hi, I’m Ken Shiro</h1>
-      <p class="tagline">Minecraft & Blockbench Modeler — cute, clean, and game-ready models.</p>
+      <p class="tagline">Minecraft & Blockbench Modeler  cute, clean, and game ready models.</p>
       <div class="cta-row">
         <a class="btn accent" href="#portfolio">View Portfolio</a>
         <!-- GUIDE: palitan ng tunay mong profiles -->
-        <a class="btn" href="https://sketchfab.com/" target="_blank" rel="noopener">Sketchfab</a>
-        <a class="btn" href="https://github.com/kenshiro014" target="_blank" rel="noopener">GitHub</a>
+      
       </div>
     </div>
   </header>
@@ -238,7 +237,7 @@
         <div style="padding:18px">
          <p>
            I’m a Minecraft-style 3D artist specializing in <strong>Blockbench</strong>. 
-           I create cute, clean, and game-ready models from baby mobs to furniture and weapons focused on smooth textures and optimized performance.
+           I create cute, clean, and game ready models from baby mobs to furniture and weapons focused on smooth textures and optimized performance.
         </p>
 
         <p>
@@ -287,20 +286,20 @@
       <h2 style="margin-bottom:10px;">Portfolio</h2>
       
       <!-- CATEGORY ROW -->
-      <div class="cat-row">
-        <div class="card cat" onclick="openGallery('baby')">
-          
-          <h3>Baby Mobs</h3>
-        </div>
-        <div class="card cat" onclick="openGallery('furniture')">
-          
-          <h3>Furniture</h3>
-        </div>
-        <div class="card cat" onclick="openGallery('weapons')">
-          
-          <h3>Weapons</h3>
-        </div>
-      </div>
+     <div class="cat-row">
+  <div class="card cat" onclick="openGallery('baby')">
+    <h3>Baby Mobs</h3>
+  </div>
+  <div class="card cat" onclick="openGallery('baby-animals')">
+    <h3>Baby Animals</h3>
+  </div>
+  <div class="card cat" onclick="openGallery('furniture')">
+    <h3>Furniture</h3>
+  </div>
+  <div class="card cat" onclick="openGallery('weapons')">
+    <h3>Weapons</h3>
+  </div>
+</div>
 
       <!-- GALLERIES -->
       <!-- GUIDE: Only one .gallery is shown at a time via JS -->
@@ -389,6 +388,30 @@
           <div class="tile" data-name="Zombie Villager"><img class="thumb" src="images/zombie_villager.png" alt="Zombie Villager"><div class="label">Zombie Villager</div></div>
         </div>
       </div>
+
+      <div id="gallery-baby-animals" class="gallery card">
+  <div style="padding:16px 16px 0"><h3>Baby Animals</h3></div>
+  <div class="grid" style="padding:16px">
+    <!-- GUIDE: replace placeholders with real files in /images -->
+    <a class="tile" href="https://sketchfab.com/" target="_blank" rel="noopener">
+      <img class="thumb" src="images/baby_animals_placeholder.png" alt="Baby Animals Set">
+      <div class="label">Baby Animals Set</div>
+    </a>
+    <div class="tile" data-name="Baby Cow">
+      <img class="thumb" src="images/baby_cow.png" alt="Baby Cow">
+      <div class="label">Baby Cow</div>
+    </div>
+    <div class="tile" data-name="Baby Sheep">
+      <img class="thumb" src="images/baby_sheep.png" alt="Baby Sheep">
+      <div class="label">Baby Sheep</div>
+    </div>
+    <div class="tile" data-name="Baby Pig">
+      <img class="thumb" src="images/baby_pig.png" alt="Baby Pig">
+      <div class="label">Baby Pig</div>
+    </div>
+  </div>
+</div>
+      
 
       <!-- FURNITURE -->
       <div id="gallery-furniture" class="gallery card">
