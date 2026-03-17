@@ -286,19 +286,11 @@
       <h2 style="margin-bottom:10px;">Portfolio</h2>
       
       <!-- CATEGORY ROW -->
-     <div class="cat-row">
-  <div class="card cat" onclick="openGallery('baby')">
-    <h3>Baby Mobs</h3>
-  </div>
-  <div class="card cat" onclick="openGallery('baby-animals')">
-    <h3>Baby Animals</h3>
-  </div>
-  <div class="card cat" onclick="openGallery('furniture')">
-    <h3>Furniture</h3>
-  </div>
-  <div class="card cat" onclick="openGallery('weapons')">
-    <h3>Weapons</h3>
-  </div>
+<div class="cat-row">
+  <div class="card cat" data-gallery="baby"><h3>Baby Mobs</h3></div>
+  <div class="card cat" data-gallery="baby-animals"><h3>Baby Animals</h3></div>
+  <div class="card cat" data-gallery="furniture"><h3>Furniture</h3></div>
+  <div class="card cat" data-gallery="weapons"><h3>Weapons</h3></div>
 </div>
 
       <!-- GALLERIES -->
@@ -557,6 +549,66 @@
     // Close on overlay click / ESC
     lb.addEventListener('click', (e)=>{ if(e.target === lb) closeLightbox(); });
     document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeLightbox(); });
-  </script>
+  </script> 
+  <script>
+  // Get all galleries and category buttons dynamically
+  const galleries = document.querySelectorAll('.gallery');
+  const catButtons = document.querySelectorAll('.cat[data-gallery]');
+
+  // Function to open a gallery by key
+  function openGallery(key){
+    galleries.forEach(g => g.classList.remove('active')); // hide all galleries
+    const target = document.getElementById('gallery-' + key);
+    if(target){
+      target.classList.add('active'); // show only selected gallery
+      target.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+  }
+
+  // Attach click events to category buttons
+  catButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      openGallery(btn.getAttribute('data-gallery'));
+    });
+  });
+
+  // Open Baby Mobs by default
+  openGallery('baby');
+
+  // LIGHTBOX FUNCTIONALITY
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  const lbCap = document.getElementById('lightbox-cap');
+
+  document.addEventListener('click', (e) => {
+    const tile = e.target.closest('div.tile');
+    if(!tile) return;
+
+    // Only open lightbox for div.tiles, not <a> links
+    if(tile.tagName === 'DIV'){
+      const img = tile.querySelector('img.thumb');
+      if(!img) return;
+      openLightbox(img.src, tile.getAttribute('data-name') || img.alt || '');
+    }
+  });
+
+  function openLightbox(src, caption=''){
+    lbImg.src = src;
+    lbImg.alt = caption || 'Preview';
+    lbCap.textContent = caption;
+    lb.classList.add('active');
+  }
+
+  function closeLightbox(){
+    lb.classList.remove('active');
+    lbImg.src = '';
+    lbImg.alt = '';
+    lbCap.textContent = '';
+  }
+
+  // Close lightbox on overlay click or ESC
+  lb.addEventListener('click', e => { if(e.target === lb) closeLightbox(); });
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox(); });
+</script>
 </body>
 </html>
