@@ -21,16 +21,6 @@
       --radius:16px;
     }
 
-    /* ====== GALLERY TOGGLE ====== */
-  .gallery {
-    display: none;   /* hide all galleries by default */
-  }
-
-  .gallery.active {
-    display: block;  /* show only the active one */
-  }
-</style>
-
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:'Press Start 2P', cursive;scroll-behavior:smooth}
     a{color:var(--accent2);text-decoration:none}
@@ -304,21 +294,6 @@
 </div>
 
       <!-- GALLERIES -->
-      <div id="gallery-baby" class="gallery active">
-  <!-- Baby Mobs -->
-</div>
-
-<div id="gallery-baby-animals" class="gallery">
-  <!-- Baby Animals -->
-</div>
-
-<div id="gallery-furniture" class="gallery">
-  <!-- Furniture -->
-</div>
-
-<div id="gallery-weapons" class="gallery">
-  <!-- Weapons -->
-</div>
       <!-- GUIDE: Only one .gallery is shown at a time via JS -->
 
       <!-- BABY MOBS -->
@@ -548,7 +523,59 @@
     </div>
   </div>
 
- 
+  <script>
+    // Toggle galleries by category
+    function openGallery(key){
+      const ids = ["gallery-baby","gallery-furniture","gallery-weapons"];
+      ids.forEach(id=>{
+        const node = document.getElementById(id);
+        if(!node) return;
+        node.classList.remove('active');
+      });
+      const target = document.getElementById("gallery-"+key);
+      if(target){
+        target.classList.add('active');
+        // smooth scroll into view
+        target.scrollIntoView({behavior:'smooth', block:'start'});
+      }
+    }
+
+    // Optional: open Baby Mobs by default on first visit
+    openGallery('baby');
+
+    // Simple Lightbox (opens when clicking div.tile — anchors still go to external links)
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightbox-img');
+    const lbCap = document.getElementById('lightbox-cap');
+
+    document.addEventListener('click', (e)=>{
+      // Only for DIV tiles (ignore A.tile)
+      const tile = e.target.closest('div.tile');
+      if(!tile) return;
+
+      const img = tile.querySelector('img.thumb');
+      if(!img) return;
+
+      openLightbox(img.getAttribute('src'), tile.getAttribute('data-name') || img.alt || '');
+    });
+
+    function openLightbox(src, caption=''){
+      lbImg.src = src;
+      lbImg.alt = caption || 'Preview';
+      lbCap.textContent = caption;
+      lb.classList.add('active');
+    }
+    function closeLightbox(){
+      lb.classList.remove('active');
+      lbImg.src = '';
+      lbImg.alt = '';
+      lbCap.textContent = '';
+    }
+
+    // Close on overlay click / ESC
+    lb.addEventListener('click', (e)=>{ if(e.target === lb) closeLightbox(); });
+    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeLightbox(); });
+  </script> 
   <script>
   // Get all galleries and category buttons dynamically
   const galleries = document.querySelectorAll('.gallery');
