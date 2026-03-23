@@ -1081,6 +1081,7 @@
             <div class="tile" data-name="Wooden Table"><img class="thumb" src="images/m_wooden_table.png" alt="Wooden Table"><div class="label">Wooden Table</div></div>
         </div>
        </div>
+    </div>
   
 
       <!-- WEAPONS -->
@@ -1215,14 +1216,25 @@
     const catButtons = document.querySelectorAll(".cat[data-gallery]");
 
     // Function to open a gallery by key
-    function openGallery(key) {
-      galleries.forEach((g) => g.classList.remove("active")); // hide all galleries
-      const target = document.getElementById("gallery-" + key);
-      if (target) {
-        target.classList.add("active"); // show only selected gallery
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }
+   function openGallery(key) {
+  // hide all main galleries
+  galleries.forEach((g) => g.classList.remove("active"));
+
+  // hide all sub-galleries too
+  subGalleries.forEach((g) => g.classList.remove("active"));
+
+  // show only the selected main gallery
+  const target = document.getElementById("gallery-" + key);
+  if (target) {
+    target.classList.add("active");
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  // optional: default open for furniture only
+  if (key === "furniture") {
+    openSubGallery("vanilla"); // keeps your default vanilla view
+  }
+}
 
     // Attach click events to category buttons
     catButtons.forEach((btn) => {
