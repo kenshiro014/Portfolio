@@ -294,6 +294,15 @@
         display: block
     }
 
+    /* SUB GALLERY (Furniture inside) */
+    .sub-gallery {
+      display: none;
+    }
+    
+    .sub-gallery.active {
+      display: block;
+    }
+
     .grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -709,15 +718,20 @@
 
       <!-- FURNITURE -->
       <div id="gallery-furniture" class="gallery card">
-        <div style="padding:16px 16px 0"><h3>Furniture</h3></div>
-        <div class="cat-row" style="padding:16px 16px 0">
-         <div class="card cat subcat" data-sub="vanilla"><h3>Vanilla</h3></div>
-          <div class="card cat subcat" data-sub="neko"><h3>Neko</h3></div>
-          <div class="card cat subcat" data-sub="minimal"><h3>Minimal</h3></div>
-        </div>
-        <div id="sub-vanilla" class="sub-gallery active">
-        <div class="grid" style="padding:16px">
-            <div class="tile" data-name="Air Exhaust"><img class="thumb" src="images/air_exhaust.png" alt="Air Exhaust"><div class="label">Air Exhaust</div></div>
+  <div style="padding:16px 16px 0"><h3>Furniture</h3></div>
+
+  <!-- SUB CATEGORIES -->
+  <div class="cat-row" style="padding:16px">
+    <div class="card cat sub-cat" data-sub="vanilla"><h3>Vanilla Style Furniture</h3></div>
+    <div class="card cat sub-cat" data-sub="neko"><h3>Neko Furniture</h3></div>
+    <div class="card cat sub-cat" data-sub="minimal"><h3>Minimal Furniture</h3></div>
+  </div>
+
+  <!-- SUB GALLERIES -->
+
+  <div id="sub-vanilla" class="sub-gallery">
+    <div class="grid" style="padding:16px">
+      <div class="tile" data-name="Air Exhaust"><img class="thumb" src="images/air_exhaust.png" alt="Air Exhaust"><div class="label">Air Exhaust</div></div>
             <div class="tile" data-name="Alarm Clock"><img class="thumb" src="images/alarm_clock.png" alt="Alarm Clock"><div class="label">Alarm Clock</div></div>
             <div class="tile" data-name="Antler Decor"><img class="thumb" src="images/antler_decor.png" alt="Antler Decor"><div class="label">Antler Decor</div></div>
             <div class="tile" data-name="Armchair"><img class="thumb" src="images/armchair.png" alt="Armchair"><div class="label">Armchair</div></div>
@@ -891,17 +905,29 @@
             <div class="tile" data-name="Wine Rack2"><img class="thumb" src="images/wine_rack2.png" alt="Wine Rack2"><div class="label">Wine Rack2</div></div>
             <div class="tile" data-name="Wooden Crate"><img class="thumb" src="images/wooden_crate.png" alt="Wooden Crate"><div class="label">Wooden Crate</div></div>
             <div class="tile" data-name="Wooden Crate2"><img class="thumb" src="images/wooden_crate2.png" alt="Wooden Crate2"><div class="label">Wooden Crate2</div></div>
-         </div>
-       </div>
-
-              <div id="sub-neko" class="sub-gallery">
-        <div class="grid" style="padding:16px">
-          <!-- neko items -->
-          <div class="tile" data-name="1"><img class="thumb" src="images/1.png" alt="1"><div class="label">1</div></div>
-          <div class="tile" data-name="2"><img class="thumb" src="images/2.png" alt="2"><div class="label">2</div></div>
-          <div class="tile" data-name="3"><img class="thumb" src="images/2.png" alt="2"><div class="label">3</div></div>
-        </div>
       </div>
+    </div>
+  </div>
+
+  <div id="sub-neko" class="sub-gallery">
+    <div class="grid" style="padding:16px">
+      <div class="tile" data-name="Neko Table">
+        <img class="thumb" src="images/neko_table.png">
+        <div class="label">Neko Table</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="sub-minimal" class="sub-gallery">
+    <div class="grid" style="padding:16px">
+      <div class="tile" data-name="Minimal Lamp">
+        <img class="thumb" src="images/minimal_lamp.png">
+        <div class="label">Minimal Lamp</div>
+      </div>
+    </div>
+  </div>
+
+</div>
 
       <!-- WEAPONS -->
       <div id="gallery-weapons" class="gallery card">
@@ -1038,8 +1064,26 @@
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") closeLightbox();
     });
+   // SUB GALLERY (Furniture inside)
+const subCats = document.querySelectorAll(".sub-cat");
+const subGalleries = document.querySelectorAll(".sub-gallery");
 
-  </script>
+function openSubGallery(key) {
+  subGalleries.forEach(g => g.classList.remove("active"));
+  const target = document.getElementById("sub-" + key);
+  if (target) target.classList.add("active");
+}
+
+subCats.forEach(btn => {
+  btn.addEventListener("click", () => {
+    openSubGallery(btn.getAttribute("data-sub"));
+  });
+});
+
+// Optional: default open
+openSubGallery("vanilla");
+  
+</script>
 
 </body>
 </html>
